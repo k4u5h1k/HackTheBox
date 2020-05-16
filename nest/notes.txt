@@ -1,0 +1,134 @@
+- Did nmap got two ports 445 (smb) and 4386 (unknown)
+- listed shares with smbclient -L \\\\nest.htb
+- got many out of which data seemed to allow anon
+- accessed data using smbclient \\\\nest.htb\\Data 
+- Had a txt with TempUser's creds
+- accessed same share using tempuser
+- found more stuff with one 'RU Scanner' directory containing a base64 like hash with username c.smith and many visual basic files in different locations
+- reverse engineered the decryption and fed hash to it
+- Imports System
+Imports System.Text
+Imports System.Security.Cryptography
+Public Class Utils
+	Public Shared Function DecryptString(EncryptedString As String) As String
+        If String.IsNullOrEmpty(EncryptedString) Then
+            Return String.Empty
+        Else
+            Return Decrypt(EncryptedString, "N3st22", "88552299", 2, "464R5DFA5DL6LE28", 256)
+        End If
+    End Function
+
+    Public Shared Function Decrypt(ByVal cipherText As String, _
+                                   ByVal passPhrase As String, _
+                                   ByVal saltValue As String, _
+                                    ByVal passwordIterations As Integer, _
+                                   ByVal initVector As String, _
+                                   ByVal keySize As Integer) _
+                           As String
+        Dim initVectorBytes As Byte()
+        initVectorBytes = Encoding.ASCII.GetBytes(initVector)
+        Dim saltValueBytes As Byte()
+        saltValueBytes = Encoding.ASCII.GetBytes(saltValue)
+        Dim cipherTextBytes As Byte()
+		cipherTextBytes = System.Convert.FromBase64String(cipherText)
+        Dim password As New Rfc2898DeriveBytes(passPhrase, _
+                                           saltValueBytes, _
+                                           passwordIterations)
+        Dim keyBytes As Byte()
+        keyBytes = password.GetBytes(CInt(keySize / 8))
+        Dim symmetricKey As New AesCryptoServiceProvider
+        symmetricKey.Mode = CipherMode.CBC
+        Dim decryptor As ICryptoTransform
+        decryptor = symmetricKey.CreateDecryptor(keyBytes, initVectorBytes)
+				Dim memoryStream As System.IO.MemoryStream
+				memoryStream = New System.IO.MemoryStream(cipherTextBytes)
+        Dim cryptoStream As CryptoStream
+        cryptoStream = New CryptoStream(memoryStream, _
+                                        decryptor, _
+                                        CryptoStreamMode.Read)
+        Dim plainTextBytes As Byte()
+        ReDim plainTextBytes(cipherTextBytes.Length)
+        Dim decryptedByteCount As Integer
+        decryptedByteCount = cryptoStream.Read(plainTextBytes, _
+                                               0, _
+                                               plainTextBytes.Length)
+        memoryStream.Close()
+        cryptoStream.Close()
+        Dim plainText As String
+        plainText = Encoding.ASCII.GetString(plainTextBytes, _
+                                            0, _
+                                            decryptedByteCount)
+	Return plainText
+    End Function
+	public sub Main()
+		console.WriteLine(DecryptString("fTEzAfYDoz1YzkqhQkH6GQFYKp1XY5hm7bjOP86yYxE="))
+	end sub
+End class
+
+gave password xRxRxPANCAK3SxRxRx
+accessed User share with c.smith and found a .exe file listening on port 4386 and another hash like thing
+using telnet accessed 4386 and used the hash with debug to get higher privileges
+changed directory to ldap and ran showquery on .ldapconf and gave another hash like Tempuser one
+reverse engineered the exe using dnspy in windows and found that it ran kinda the same decryption function
+so just put in the new values for decryption... which looks like this
+- Imports System
+Imports System.Text
+Imports System.Security.Cryptography
+Public Class Utils
+	Public Shared Function DecryptString(EncryptedString As String) As String
+        If String.IsNullOrEmpty(EncryptedString) Then
+            Return String.Empty
+        Else
+            Return Decrypt(EncryptedString, “667912”, “1313Rf99”, 3, “1L1SA61493DRV53Z”, 256)
+        End If
+    End Function
+
+    Public Shared Function Decrypt(ByVal cipherText As String, _
+                                   ByVal passPhrase As String, _
+                                   ByVal saltValue As String, _
+                                    ByVal passwordIterations As Integer, _
+                                   ByVal initVector As String, _
+                                   ByVal keySize As Integer) _
+                           As String
+        Dim initVectorBytes As Byte()
+        initVectorBytes = Encoding.ASCII.GetBytes(initVector)
+        Dim saltValueBytes As Byte()
+        saltValueBytes = Encoding.ASCII.GetBytes(saltValue)
+        Dim cipherTextBytes As Byte()
+		cipherTextBytes = System.Convert.FromBase64String(cipherText)
+        Dim password As New Rfc2898DeriveBytes(passPhrase, _
+                                           saltValueBytes, _
+                                           passwordIterations)
+        Dim keyBytes As Byte()
+        keyBytes = password.GetBytes(CInt(keySize / 8))
+        Dim symmetricKey As New AesCryptoServiceProvider
+        symmetricKey.Mode = CipherMode.CBC
+        Dim decryptor As ICryptoTransform
+        decryptor = symmetricKey.CreateDecryptor(keyBytes, initVectorBytes)
+				Dim memoryStream As System.IO.MemoryStream
+				memoryStream = New System.IO.MemoryStream(cipherTextBytes)
+        Dim cryptoStream As CryptoStream
+        cryptoStream = New CryptoStream(memoryStream, _
+                                        decryptor, _
+                                        CryptoStreamMode.Read)
+        Dim plainTextBytes As Byte()
+        ReDim plainTextBytes(cipherTextBytes.Length)
+        Dim decryptedByteCount As Integer
+        decryptedByteCount = cryptoStream.Read(plainTextBytes, _
+                                               0, _
+                                               plainTextBytes.Length)
+        memoryStream.Close()
+        cryptoStream.Close()
+        Dim plainText As String
+        plainText = Encoding.ASCII.GetString(plainTextBytes, _
+                                            0, _
+                                            decryptedByteCount)
+	Return plainText
+    End Function
+	public sub Main()
+		console.WriteLine(DecryptString("yyEq0Uvvhq2uQOcWG8peLoeRQehqip/fKdeG/kjEVb4="))
+	end sub
+End class
+
+And voila out came the Administrator pass 
+
