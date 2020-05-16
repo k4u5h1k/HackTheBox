@@ -1,0 +1,5 @@
+/usr/lib/mime/packages mime-support/noawait
+/usr/share/applications mime-support/noawait
+/etc/php/7.2/cli/conf.d php7.2-cli/noawait
+/etc/php/7.2/apache2/conf.d libapache2-mod-php7.2/noawait
+/etc/php/7.2/fpm/conf.d php7.2-fpm/noawait

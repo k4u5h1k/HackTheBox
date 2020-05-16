@@ -1,0 +1,16 @@
+- Googling best shells you might need (the comment) i found a github page
+- Trying each script in the page I finally found 10.10.10.181/smevk.php working
+- Login using default username admin and password admin
+- Got a shell as user webadmin
+- Ran sudo -l and saw a lua compiler could be executed by sysadmin
+- Made a lua script containing just os.execute("/bin/bash") and uploaded to /var/www/html
+- Got shell as sysadmin
+- sysadmin has a linuxprivesc checker in his home folder
+- sysadmin also has .ssh and authorized keys in his folder
+- Ran sshkeygen to generate credentials and uploaded public key to authorized keys folder using a lua script ssh.lua (in this directory)
+- Used sudo -u sysadmin /home/sysadmin/luvit ssh.lua to do so
+- Logged into ssh as sysadmin using ssh -i /Users/Kaushik/.ssh/id_rsa sysadmin@10.10.10.181
+- These jobs are being run every 30 seconds by root
+- /bin/cp /var/backups/.update-motd.d/00-header /var/backups/.update-motd.d/10-help-text /var/backups/.update-motd.d/50-motd-news /var/backups/.update-motd.d/80-esm /var/backups/.update-motd.d/91-release-upgrade /etc/update-motd.d/
+- /var/backups/.update-motd.d/00-header was echoing Welcome to Xh4H land so i just added cat root/root.txt and logged in again within 30 seconds
+- Got root flag

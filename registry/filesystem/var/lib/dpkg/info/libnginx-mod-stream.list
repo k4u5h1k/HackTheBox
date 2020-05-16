@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/lib
+/usr/lib/nginx
+/usr/lib/nginx/modules
+/usr/lib/nginx/modules/ngx_stream_module.so
+/usr/share
+/usr/share/doc
+/usr/share/doc/libnginx-mod-stream
+/usr/share/doc/libnginx-mod-stream/changelog.Debian.gz
+/usr/share/doc/libnginx-mod-stream/copyright
+/usr/share/nginx
+/usr/share/nginx/modules-available
+/usr/share/nginx/modules-available/mod-stream.conf

@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/lib
+/usr/lib/nginx
+/usr/lib/nginx/modules
+/usr/lib/nginx/modules/ngx_http_xslt_filter_module.so
+/usr/share
+/usr/share/doc
+/usr/share/doc/libnginx-mod-http-xslt-filter
+/usr/share/doc/libnginx-mod-http-xslt-filter/changelog.Debian.gz
+/usr/share/doc/libnginx-mod-http-xslt-filter/copyright
+/usr/share/nginx
+/usr/share/nginx/modules-available
+/usr/share/nginx/modules-available/mod-http-xslt-filter.conf

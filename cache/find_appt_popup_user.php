@@ -1,0 +1,1 @@
+Patient Portal is turned off

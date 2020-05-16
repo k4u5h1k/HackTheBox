@@ -1,0 +1,4 @@
+libapache2-mod-php7.2: apache2-module-depends-on-real-apache2-package apache2-bin
+libapache2-mod-php7.2: embedded-library usr/lib/apache2/modules/libphp7.2.so: file
+libapache2-mod-php7.2: apache2-module-does-not-ship-load-file libphp7.2
+libapache2-mod-php7.2: non-standard-apache2-module-package-name libapache2-mod-php7.2 != libapache2-libphp7.2

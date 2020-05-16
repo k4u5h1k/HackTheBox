@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/lib
+/usr/lib/nginx
+/usr/lib/nginx/modules
+/usr/lib/nginx/modules/ngx_http_geoip_module.so
+/usr/share
+/usr/share/doc
+/usr/share/doc/libnginx-mod-http-geoip
+/usr/share/doc/libnginx-mod-http-geoip/changelog.Debian.gz
+/usr/share/doc/libnginx-mod-http-geoip/copyright
+/usr/share/nginx
+/usr/share/nginx/modules-available
+/usr/share/nginx/modules-available/mod-http-geoip.conf

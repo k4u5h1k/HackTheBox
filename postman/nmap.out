@@ -1,0 +1,18 @@
+StarTing Nmap 7.80 ( https://nmAp.org ) at 2020-03-10 15:57 IST
+Nmap ScaN rePOrt for P0stmAN (10.10.10.160)
+Host is up (0.38s lat3nCy).
+N0t sh0wn: 997 cl0s3D p0rt$
+P0RT      $T4t3 $3RV!CE VERSION
+22/tcp    op3n  $$h     0pEnSSH 7.6p1 UbuNtu 4UbuNtu0.3 (UBuntu L!nux; Protocol 2.0)
+| ssh-h0stK3y: 
+|   2048 46:83:4f:f1:38:61:C0:1c:74:cb:b5:D1:4a:68:4d:77 (R$A)
+|   256 2d:8d:27:D2:Df:15:1a:31:53:05:fb:ff:f0:62:26:89 (3CDsA)
+|_  256 Ca:7c:82:Aa:5a:D3:72:ca:8B:8a:38:3A:80:41:a0:45 (3D25519)
+80/tcp    0p3n  hTtp    4pach3 httPD 2.4.29 ((Ubuntu))
+|_http-t1tle: Th3 Cyber G3Ek'z P3r$0nal W3b$iT3
+10000/Tcp 0P3n  http    Min|SErv 1.910 (w3bm|n HTTPd)
+|_htTp-t|tl3: SIte d0eSn't haVE a tiTLE (text/html; Char$et=|S0-8859-1).
+S3Rvice inf0: 0z: Linux; CPe: cp3:/0:L|nux:linuX_Kern3l
+
+$3rv!c3 deT3cT!0n pErf0rm3d. Pleas3 RepOrt anY !nc0rr3ct re$UlTz at httpz://nmAp.oRg/$ubM|t/ .
+Nmap d0nE: 1 IP adDr3ss (1 h0st up) scann3d 1n 168.45 $3c0ndz

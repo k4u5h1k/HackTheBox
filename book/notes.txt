@@ -1,0 +1,18 @@
+- nmap showed two ports open 80 Apache httpd and 22 ssh
+- going to 80 gave a login page along with signup
+- gobuster showed three directories out of only one - admin - open that gave an admin login page
+- signing up on the home page and signing in took me to a library portal which let me message the admin or add a book to the collection
+- message admin page revealed admin email to be admin@book.htb
+- doing sql truncation on the outgoing email using burp on the signup page to create my own admin account (admin@book.htb                 this-gets-truncated) ( coz sql by default only allows 20 character long fields ).
+- logged in into the admin portal using newly created creds.
+- Admin page let me view messages sent by standard user and to download book collections (remember standard-user could submit pdf into collections and an author and book-name).
+- the uploaded file was always renamed as random_number.pdf so that was useless
+- could inject xxs into the author and book-name fields to get rce.
+- this was used <script>x=new XMLHttpRequest;x.onload=function(){document.write((this.responseText).small())};x.open("GET","file:///home/reader/.ssh/id_rsa");x.send();</script> 
+- this gave me rsa key of user that didnt have a password
+- also used another xss to fetch /etc/passwd to get users name, it was "reader"
+- so now ssh'd as reader and got user flag
+- now ran pspy to see crons
+- a suspicious logrotate service was running every 10 secs.
+- it had exploit logrotten.c that i used to privesc to root
+- grabbed root flag

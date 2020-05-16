@@ -1,0 +1,169 @@
+# Nmap 7.80 scan initiated Thu Apr  2 14:06:22 2020 as: nmap -sC -sV -o nmap.out 10.13.37.10
+Nmap scan report for 10.13.37.10
+Host is up (0.24s latency).
+Not shown: 993 closed ports
+PORT     STATE    SERVICE  VERSION
+22/tcp   open     ssh      OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 62:f6:49:80:81:cf:f0:07:0e:5a:ad:e9:8e:1f:2b:7c (RSA)
+|   256 54:e2:7e:5a:1c:aa:9a:ab:65:ca:fa:39:28:bc:0a:43 (ECDSA)
+|_  256 93:bc:37:b7:e0:08:ce:2d:03:99:01:0a:a9:df:da:cd (ED25519)
+53/tcp   open     domain   ISC BIND 9.10.3-P4 (Ubuntu Linux)
+| dns-nsid: 
+|_  bind.version: 9.10.3-P4-Ubuntu
+80/tcp   open     http     nginx 1.10.3 (Ubuntu)
+|_http-server-header: nginx/1.10.3 (Ubuntu)
+|_http-title: Welcome to nginx on Debian!
+1045/tcp filtered fpitp
+5555/tcp open     freeciv?
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP, GenericLines, GetRequest, adbConnect: 
+|     enter your name:
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|   NULL: 
+|     enter your name:
+|   SMBProgNeg: 
+|     enter your name:
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|     invalid option!
+|     [31mMember manager!
+|     edit
+|     change name
+|     gift
+|     exit
+|_    invalid option!
+6009/tcp filtered X11:9
+7777/tcp open     cbt?
+| fingerprint-strings: 
+|   Arucer, DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, RPCCheck, RTSPRequest, Socks5, X11Probe: 
+|     --==[[ Spiritual Memo ]]==--
+|     Create a memo
+|     Show memo
+|     Delete memo
+|     Can't you read mate?
+|   NULL: 
+|     --==[[ Spiritual Memo ]]==--
+|     Create a memo
+|     Show memo
+|_    Delete memo
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5555-TCP:V=7.80%I=7%D=4/2%Time=5E85A42F%P=x86_64-apple-darwin19.0.0
+SF:%r(NULL,11,"enter\x20your\x20name:\n")%r(GenericLines,63,"enter\x20your
+SF:\x20name:\n\x1b\[31mMember\x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit
+SF:\n3\.\x20ban\n4\.\x20change\x20name\n5\.\x20get\x20gift\n6\.\x20exit\n"
+SF:)%r(DNSVersionBindReqTCP,63,"enter\x20your\x20name:\n\x1b\[31mMember\x2
+SF:0manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\x20change\x
+SF:20name\n5\.\x20get\x20gift\n6\.\x20exit\n")%r(SMBProgNeg,9D1,"enter\x20
+SF:your\x20name:\n\x1b\[31mMember\x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20
+SF:edit\n3\.\x20ban\n4\.\x20change\x20name\n5\.\x20get\x20gift\n6\.\x20exi
+SF:t\ninvalid\x20option!\n\x1b\[31mMember\x20manager!\x1b\[0m\n1\.\x20add\
+SF:n2\.\x20edit\n3\.\x20ban\n4\.\x20change\x20name\n5\.\x20get\x20gift\n6\
+SF:.\x20exit\ninvalid\x20option!\n\x1b\[31mMember\x20manager!\x1b\[0m\n1\.
+SF:\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\x20change\x20name\n5\.\x20get\x20
+SF:gift\n6\.\x20exit\ninvalid\x20option!\n\x1b\[31mMember\x20manager!\x1b\
+SF:[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\x20change\x20name\n5\.\x2
+SF:0get\x20gift\n6\.\x20exit\ninvalid\x20option!\n\x1b\[31mMember\x20manag
+SF:er!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\x20change\x20name
+SF:\n5\.\x20get\x20gift\n6\.\x20exit\ninvalid\x20option!\n\x1b\[31mMember\
+SF:x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\x20change
+SF:\x20name\n5\.\x20get\x20gift\n6\.\x20exit\ninvalid\x20option!\n\x1b\[31
+SF:mMember\x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\x
+SF:20change\x20name\n5\.\x20get\x20gift\n6\.\x20exit\ninvalid\x20option!\n
+SF:\x1b\[31mMember\x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ba
+SF:n\n4\.\x20change\x20name\n5\.\x20get\x20gift\n6\.\x20exit\ninvalid\x20o
+SF:ption!\n\x1b\[31mMember\x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3
+SF:\.\x20ban\n4\.\x20change\x20name\n5\.\x20get\x20gift\n6\.\x20exit\ninva
+SF:lid\x20option!\n\x1b")%r(adbConnect,63,"enter\x20your\x20name:\n\x1b\[3
+SF:1mMember\x20manager!\x1b\[0m\n1\.\x20add\n2\.\x20edit\n3\.\x20ban\n4\.\
+SF:x20change\x20name\n5\.\x20get\x20gift\n6\.\x20exit\n")%r(GetRequest,63,
+SF:"enter\x20your\x20name:\n\x1b\[31mMember\x20manager!\x1b\[0m\n1\.\x20ad
+SF:d\n2\.\x20edit\n3\.\x20ban\n4\.\x20change\x20name\n5\.\x20get\x20gift\n
+SF:6\.\x20exit\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port7777-TCP:V=7.80%I=7%D=4/2%Time=5E85A42F%P=x86_64-apple-darwin19.0.0
+SF:%r(NULL,5D,"\n--==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\[1\]\x20Cre
+SF:ate\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20memo\n\[4\]
+SF:\x20Tap\x20out\n>\x20")%r(X11Probe,71,"\n--==\[\[\x20Spiritual\x20Memo\
+SF:x20\]\]==--\n\n\[1\]\x20Create\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3
+SF:\]\x20Delete\x20memo\n\[4\]\x20Tap\x20out\n>\x20Can't\x20you\x20read\x2
+SF:0mate\?")%r(Socks5,71,"\n--==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\
+SF:[1\]\x20Create\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20
+SF:memo\n\[4\]\x20Tap\x20out\n>\x20Can't\x20you\x20read\x20mate\?")%r(Aruc
+SF:er,71,"\n--==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\[1\]\x20Create\x
+SF:20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20memo\n\[4\]\x20T
+SF:ap\x20out\n>\x20Can't\x20you\x20read\x20mate\?")%r(GenericLines,71,"\n-
+SF:-==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\[1\]\x20Create\x20a\x20mem
+SF:o\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20memo\n\[4\]\x20Tap\x20out\
+SF:n>\x20Can't\x20you\x20read\x20mate\?")%r(GetRequest,71,"\n--==\[\[\x20S
+SF:piritual\x20Memo\x20\]\]==--\n\n\[1\]\x20Create\x20a\x20memo\n\[2\]\x20
+SF:Show\x20memo\n\[3\]\x20Delete\x20memo\n\[4\]\x20Tap\x20out\n>\x20Can't\
+SF:x20you\x20read\x20mate\?")%r(HTTPOptions,71,"\n--==\[\[\x20Spiritual\x2
+SF:0Memo\x20\]\]==--\n\n\[1\]\x20Create\x20a\x20memo\n\[2\]\x20Show\x20mem
+SF:o\n\[3\]\x20Delete\x20memo\n\[4\]\x20Tap\x20out\n>\x20Can't\x20you\x20r
+SF:ead\x20mate\?")%r(RTSPRequest,71,"\n--==\[\[\x20Spiritual\x20Memo\x20\]
+SF:\]==--\n\n\[1\]\x20Create\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x2
+SF:0Delete\x20memo\n\[4\]\x20Tap\x20out\n>\x20Can't\x20you\x20read\x20mate
+SF:\?")%r(RPCCheck,71,"\n--==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\[1\
+SF:]\x20Create\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20mem
+SF:o\n\[4\]\x20Tap\x20out\n>\x20Can't\x20you\x20read\x20mate\?")%r(DNSVers
+SF:ionBindReqTCP,71,"\n--==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\[1\]\
+SF:x20Create\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20memo\
+SF:n\[4\]\x20Tap\x20out\n>\x20Can't\x20you\x20read\x20mate\?")%r(DNSStatus
+SF:RequestTCP,71,"\n--==\[\[\x20Spiritual\x20Memo\x20\]\]==--\n\n\[1\]\x20
+SF:Create\x20a\x20memo\n\[2\]\x20Show\x20memo\n\[3\]\x20Delete\x20memo\n\[
+SF:4\]\x20Tap\x20out\n>\x20Can't\x20you\x20read\x20mate\?");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Apr  2 14:09:59 2020 -- 1 IP address (1 host up) scanned in 217.05 seconds

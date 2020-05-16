@@ -1,0 +1,12 @@
+/.
+/usr
+/usr/sbin
+/usr/sbin/nginx
+/usr/share
+/usr/share/doc
+/usr/share/doc/nginx-core
+/usr/share/doc/nginx-core/copyright
+/usr/share/man
+/usr/share/man/man8
+/usr/share/man/man8/nginx.8.gz
+/usr/share/doc/nginx-core/changelog.Debian.gz

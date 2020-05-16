@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/lib
+/usr/lib/nginx
+/usr/lib/nginx/modules
+/usr/lib/nginx/modules/ngx_http_image_filter_module.so
+/usr/share
+/usr/share/doc
+/usr/share/doc/libnginx-mod-http-image-filter
+/usr/share/doc/libnginx-mod-http-image-filter/changelog.Debian.gz
+/usr/share/doc/libnginx-mod-http-image-filter/copyright
+/usr/share/nginx
+/usr/share/nginx/modules-available
+/usr/share/nginx/modules-available/mod-http-image-filter.conf

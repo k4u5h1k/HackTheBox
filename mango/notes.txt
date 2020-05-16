@@ -1,0 +1,14 @@
+- Ran nmap and found 3 ports open 80 httpd apache 443 httpd apache and 22 ssh
+- 80 gave forbidden error and 443 said to use https after which was shown a search engine like page without another linked analytics page
+- A look at the certificate showed that the common name was staged-order.mango.htb so added this to /etc/hosts and reloaded with http and was shown a login page
+- Had to perform Mongodb injection using regex to guess each character of username and password
+- Used python nosqli-user-pass-enum.py -u http://staging-order.mango.htb/ -up username -p password -op login:login -m POST -ep password
+- There were two usernames - "mango, admin" and two passwords - "h3mXK8RhU~f{]f5H, t9KcS3>!0B#2" first one turned out to be mango's ssh cred
+- So logged in as mango and did su admin to switch to admin coz mango had nothing interesting.
+- At this point tried sudo -l but wasnt allowed so to see which files had SUID of root ran find / -user root -perm -4000 2>/dev/null found a java interpreter called jjs
+- Hence could cat /root/root.txt using: 
+    var BufferedReader = Java.type("java.io.BufferedReader");
+    var FileReader = Java.type("java.io.FileReader");
+    var br = new BufferedReader(new FileReader("/root/root.txt"));
+    while ((line = br.readLine()) != null) { print(line); };
+- PWND bitch

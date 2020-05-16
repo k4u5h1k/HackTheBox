@@ -1,0 +1,4 @@
+91619fe2724cd58cfa2a35661fa169c5  usr/lib/nginx/modules/ngx_http_geoip_module.so
+9cab5ef626b67fd556f3badcab23dfd9  usr/share/doc/libnginx-mod-http-geoip/changelog.Debian.gz
+a3ca7af9f57003b84279a9112d5d8523  usr/share/doc/libnginx-mod-http-geoip/copyright
+1ad8bbf05d46afcb384a7b4e04afe3e2  usr/share/nginx/modules-available/mod-http-geoip.conf

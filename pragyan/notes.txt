@@ -1,0 +1,4 @@
+-- inside json file decoded base64 and found image
+-- ran strings on image and found xpacket thingy
+-- from values found two random images 
+-- found Cwm fjord bank glyphs vext quiz, U+1F603 in an image

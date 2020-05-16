@@ -1,0 +1,6 @@
+/index (Status: 200)
+/images (Status: 301)
+/mail (Status: 200)
+/home (Status: 302)
+/assets (Status: 301)
+/api (Status: 301)

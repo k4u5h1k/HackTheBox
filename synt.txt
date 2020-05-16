@@ -1,0 +1,2 @@
+gobuster dir -u 10.10.10.160 -w ~/wordlists/directory-list-2.3-medium.txt -t 40
+ffuf -c -D -u http://10.10.10.165:80/FUZZ -w ../../wordlists/directory-list-2.3-medium.txt

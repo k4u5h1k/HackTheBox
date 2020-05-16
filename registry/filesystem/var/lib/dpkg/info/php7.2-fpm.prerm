@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+
+
+php_enable() { return 0; }
+
+# Automatically added by dh_installinit/11.1.6ubuntu1
+if [ -x "/etc/init.d/php7.2-fpm" ] && [ "$1" = remove ]; then
+	invoke-rc.d php7.2-fpm stop || exit 1
+fi
+# End automatically added section
+# Automatically added by dh_apache2/UNDECLARED
+if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ] ; then
+	if php_enable; then
+		if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
+			. /usr/share/apache2/apache2-maintscript-helper
+
+			for conf in php7.2-fpm  ; do
+				apache2_invoke disconf $conf  || exit 1
+			done
+		fi
+	fi
+fi
+# End automatically added section
+
+
+exit 0

@@ -1,0 +1,25 @@
+- Ran nmap found two services open 80 http and 22 ssh
+- Ran gobuster and found several directories
+    - music
+    - artwork
+    - sierra
+    - server-status (status 401)
+- Found exploit for opennetadmin system redirected to from login on /music page (That's hack.sh in this directory)
+- Ran exploit pointing to 10.10.10.171/ona/login.php
+- Found config/some php file on machine
+- Found creds in local/config/database_settings.php
+    - 'db_type' => 'mysqli',
+    - 'db_host' => 'localhost',
+    - 'db_login' => 'ona_sys',
+    - 'db_passwd' => 'n1nj4W4rri0R!',
+    - 'db_database' => 'ona_default',
+    - 'db_debug' => false,
+- Logged into ssh with username jimmy and password n1nj4W4rri0R!
+- Found interesting php in /var/www/internal
+- Ran php on localhost on a listening port ( ran netstat -tl to find port ) and got as rsa key
+- Passed the key through ssh2john.py to convert into john crackable format then pass it to john
+- Got the RSA passkey and logged in as joanna (using ssh -i ~/stuff/ctf/rsa joanna@10.10.10.171)
+- Did a sudo -l to see what commands joanna was allowed to use with sudo without entering password
+- Found that she could use nano on /opt/priv 
+- Used gtfobin to get shell as root 
+- got root flag

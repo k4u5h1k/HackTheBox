@@ -1,0 +1,10 @@
+FUZZ,url,redirectlocation,position,status_code,content_length,content_words,content_lines,resultfile
+search.php,http://quick.htb:9001/search.php,,26,200,1,1,2,
+index.php,http://quick.htb:9001/index.php,,2,200,3351,354,126,
+home.php,http://quick.htb:9001/home.php,,48,200,86,2,1,
+login.php,http://quick.htb:9001/login.php,,78,200,4345,451,209,
+clients.php,http://quick.htb:9001/clients.php,,1324,200,2698,234,112,
+db.php,http://quick.htb:9001/db.php,,1668,200,0,1,1,
+ticket.php,http://quick.htb:9001/ticket.php,,10306,200,86,2,1,
+,http://quick.htb:9001/,,90451,200,3351,354,126,
+.php,http://quick.htb:9001/.php,,90452,403,276,20,10,

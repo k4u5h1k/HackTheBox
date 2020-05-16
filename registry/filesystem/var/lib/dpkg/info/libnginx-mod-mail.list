@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/lib
+/usr/lib/nginx
+/usr/lib/nginx/modules
+/usr/lib/nginx/modules/ngx_mail_module.so
+/usr/share
+/usr/share/doc
+/usr/share/doc/libnginx-mod-mail
+/usr/share/doc/libnginx-mod-mail/changelog.Debian.gz
+/usr/share/doc/libnginx-mod-mail/copyright
+/usr/share/nginx
+/usr/share/nginx/modules-available
+/usr/share/nginx/modules-available/mod-mail.conf
