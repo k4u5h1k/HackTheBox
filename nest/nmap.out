@@ -1,0 +1,9 @@
+# Nmap 7.80 scan initiated Sat May 16 11:39:08 2020 as: nmap -Pn -p1-65535 -oN nmap.out nest.htb
+Nmap scan report for nest.htb (10.10.10.178)
+Host is up (0.18s latency).
+Not shown: 65533 filtered ports
+PORT     STATE SERVICE
+445/tcp  open  microsoft-ds
+4386/tcp open  unknown
+
+# Nmap done at Sat May 16 11:47:24 2020 -- 1 IP address (1 host up) scanned in 495.42 seconds
