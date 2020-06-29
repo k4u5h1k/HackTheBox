@@ -1,0 +1,6 @@
+[IKEEXT]
+MEDIA=rastapi
+Port=VPN2-0
+Device=Wan Miniport (IKEv2)
+DEVICE=vpn
+PhoneNumber=127.0.0.1

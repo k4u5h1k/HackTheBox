@@ -1,0 +1,14 @@
+- ran nmap found a bunch of stuff but no 80. there was kerberos azure ldap smb and winrm
+- ran rpcclient with empty user, like rpcclient -U "" -N monteverde.htb
+- hit enumdomusers and got a list of users
+- queried each user and eliminated those with older logins
+- tried username:username (username as password) in smb client and found SABatchJobs to be working.
+- smbclient -L \\\\monte.htb\\ -U SABatchJobs
+- found a share users$
+- Did smbclient \\\\monte.htb\\users$ -U SABatchJobs to enumerate share
+- had some folders for each user. mhope was readable and had an Azure config with his password 4n0therD4y@n0th3r$
+- got into evil with him evil-winrm -u mhope -p 4n0therD4y@n0th3r$ -i monteverde.htb
+- got user.
+- there seemed to be some encrypted Azure creds.
+- Used XPN's script azuread_decrypt_msol.ps1 with one sql connection line fixed to query credentials
+- got root

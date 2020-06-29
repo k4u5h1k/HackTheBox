@@ -1,0 +1,6 @@
+Quick4cc3$$
+elisa@wink.co.uk:Quick4cc3$$
+db_adm:db_p4ss
+localhost:db_adm:db_p4ss:quick
+srvadm@quick.htb:yl51pbx
+root:&ftQ4K3SGde8?

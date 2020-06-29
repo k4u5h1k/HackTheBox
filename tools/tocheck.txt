@@ -1,0 +1,4 @@
+- /etc/tomcat9/Catalina/10.10.15.35
+- mysql
+- /etc/tomcat9/Catalina/gen/manager.xml
+- 

