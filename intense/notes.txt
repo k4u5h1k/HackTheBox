@@ -1,0 +1,20 @@
+- Website said you can log in with guest and guest
+- got some website code
+- found sql injection in submit
+- test'||(case when (select count(secret) from users where username='guest')=1 then NULL else load_extension(0) end));-- 
+- now must script bruteforcing character by character
+- wrote script and found secret f1fc12010c094016def791e1435ddfdcaeccf8250e36630c0bc93285c2971105
+- now must forge cookie
+- first part of cookie is the base64 of user=username;secret=secret
+- second part of the cookie is the base64(sha256(private key + first part without base64))
+- so must use hash extension attack so that i can add another username;secret at the end and fool the system into thinking those are my valid creds
+- wrote a script to do this and called it cook.py
+- give it the second part of the cookie as first argument and key length in second
+- copy paste the output cookie and you should be set
+- so got admin
+- admin could use the /admin/log/view and /admin/log/dir to send file and folder names in post request to view files and folders
+- had to add Content-Type: application/x-www-form-urlencoded header to make it recognize that there is data in the body
+- so could use standard lfi payload ../../../../../../../../../etc/passwd to get file
+- coded a custom shell and named it cosecsfilegetter.py
+- if there is a / at the end of name, it ls'es the name else cat
+- ight

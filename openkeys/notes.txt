@@ -1,0 +1,10 @@
+- ran nmap 80 and 22 are open
+- 80 has a login page that gives ssh key of logged in user. Default creds get me nowhere
+- fuzzed site got an include folder with a vim swap file
+- openned up the file and hit :recover to get file.
+- strings on that file gave a string jennifer who seems to be the owner of the file.
+- googled and found that openbsd login auth has a -s challenge option to force authentication
+- however the user then becomes -s challenge which has no ssh key.
+- so got a cookie editor and added a username field with username jennifer.
+- got ssh key of jennifer. Got user
+- most recent exploit of openbsd root66 (in this directory) that gives me root.

