@@ -1,0 +1,11 @@
+- Server is werkzeug python 3.8.5
+- available exploit uses debug console which is disabled
+- msfvenom has a apk template command injection vuln
+- used the exploit to generate malicious apk payload and got reverse shell
+- got user kid
+- user pwn had a scanloser.sh that i could inject code into
+- injected reverse shell got pwn
+- ran sudo -l and pwn could run msfconsole as root
+- ran msfconsole and hit bash to spawn shell
+- as root.
+- get pwnd

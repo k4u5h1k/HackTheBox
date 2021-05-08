@@ -1,0 +1,25 @@
+- nmap gave 80, 8080, 22 and 143 - imap and 993 imap-ssl
+- went to the website found a list of emails
+- put that in users.txt
+- tried to send everyone emails using swaks with the body as my ip:8080 where a listener was listening
+- got reply from paulbyrd@sneakymailer.htb
+- the body of that email had his password
+- got an email client called evolution and logged in as him
+- in the sent box there was developer users pass
+- could go into ftp as developer
+- seemed to be running modified versions of the same port 80 pages
+- fuzzed vhosts and found dev.sneakycorp.htb
+- put a reverse shell through ftp and went to dev.sneakycorp.htb/php-reverse-shell.php
+- got shell as www-data
+- there seems to be another vhost pypi.sneakycorp.htb
+- at pypi.sneakycorp.htb:8080 there is a pypi server
+- in www/pypi.sneakycorb.htb/ there was a .htpassword with pypi's hash.
+- cracked it 
+- same directory packages only writable to low and pypi users
+- made a python package with setup.py trying to write a public ssh key to low's authorized_keys 
+- uploaded and wrote key successfully 
+- got low
+- did sudo -l found could run pip with sudo
+- that had a gtfobin
+- got root
+
