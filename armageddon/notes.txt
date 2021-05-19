@@ -1,0 +1,12 @@
+- mysql creds
+    * db: 'drupal'
+    * username: 'drupaluser'
+    * password: 'CQHEy@9M*m23gBVj'
+
+- got into mysql got more creds.
+    * brucetherealadmin  $S$DgL2gjv6ZtxBo6CdqZEyJuBphBmrCqIV6W97.oOsUf1xAhaadURt - booboo
+    * 0xhuz   $S$DqIs8QQdTwHl2eRvoRQM/RcYxVvanUCuZZbMVRypi.wKtED2Z/D0
+
+- brucetherealadmin - booboo gave me user
+- sudo -l said snap install can be run NOPASSWD
+- used gtfobin to run cat /root/root.txt
